@@ -128,15 +128,22 @@
             const canvas = document.createElement('canvas');
             const context = canvas.getContext('2d');
 
-            canvas.width = backgroundImage.width;
-            canvas.height = backgroundImage.height;
+            canvas.width = backgroundImage.naturalWidth; // Use naturalWidth to get the actual dimensions of the image
+            canvas.height = backgroundImage.naturalHeight;
 
             context.drawImage(backgroundImage, 0, 0);
 
             const text = overlayText.innerText;
-            context.font = '40px Arial, Helvetica, sans-serif';
+            const fontSize = 40;
+            context.font = `${fontSize}px Arial, Helvetica, sans-serif`;
             context.fillStyle = 'rgb(3, 55, 176)';
-            context.fillText(text, canvas.width / 2, canvas.height * 0.685, canvas.width);
+
+            // Calculate the position of the text based on the canvas dimensions and font size
+            const textWidth = context.measureText(text).width;
+            const textX = (canvas.width - textWidth) / 2;
+            const textY = canvas.height * 0.685 + fontSize / 2;
+
+            context.fillText(text, textX, textY);
 
             const link = document.createElement('a');
             link.href = canvas.toDataURL('image/png');
