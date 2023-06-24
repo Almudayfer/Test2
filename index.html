@@ -4,112 +4,105 @@
   <title>تهنئة</title>
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-    }
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+
+      label {
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      input[type="text"] {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        width: 200px;
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      .footer {
+        text-align: center;
+        padding: 20px 0;
+      }
+
+      .footer p {
+        font-size: 14px;
+        color: #888;
+      }
+
+      #image-container {
+        position: relative;
+        display: inline-block;
+        margin-top: 20px;
+      }
     
-    h1 {
-      text-align: center;
-    }
-    
-    .container {
-      max-width: 500px;
-      margin: 0 auto;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-    
-    form {
-      text-align: center;
-    }
-    
-    label {
-      display: block;
-      margin-bottom: 10px;
-    }
-    
-    input[type="text"] {
-      width: 50%;
-      padding: 10px;
-      border: 1px solid gray;
-      border-radius: 4px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      font-size: 16px;
-    }
-    
-    button[type="submit"] {
-      display: inline-block;
-      padding: 10px 20px;
-      margin-top: 10px;
-      background-color: #4285F4;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    
-    button[type="submit"]:hover {
-      background-color: #2F76EE;
-    }
-    
-    #image-container {
-      position: relative;
-      display: inline-block;
-      margin-top: 20px;
-    }
-    
-    #overlay-text {
-      position: absolute;
-      top: 69.5%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 40px;
-      font-family: Arial, Helvetica, sans-serif;
-      color: rgb(3, 55, 176);
-    }
-    
-    #download-btn {
-      display: block;
-      margin: 20px auto;
-      padding: 10px 20px;
-      background-color: #4285F4;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    
-    #download-btn:disabled {
-      background-color: #ccc;
-      cursor: not-allowed;
-    }
+      #overlay-text {
+        position: absolute;
+        top: 68.5%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 40px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: rgb(3, 55, 176);
+      }
   </style>
 </head>
 <body>
-  <h1>:الاسم</h1>
-  
-  <form id="text-form">
-    <input type="text" id="text-input" required>
-  </form>
-  
-  <br>
-  
-  <div id="image-container">
-    <img id="background-image" src="test.png" alt="Background Image">
-    <div id="overlay-text"></div>
+
+  <div class="container">
+    <div class="header">
+      <button id="download-btn">تحميل</button>
+      <input type="text" id="text-input" placeholder="            ...أدخل الاسم">
+      <label for="inputField">:الاسم</label>
+    </div>
+    <div id="image-container">
+      <img src="test.png" alt="Big Image" id="background-image">
+      <div id="overlay-text"></div>
+    </div>
+    <div class="footer">
+      <p>Google Chrome في حال ظهورأي خطأ يرجى فتح الموقع على متصفح</p>
+    </div>
   </div>
-  
-  <br>
-  
-  <div>في حال ظهور خطأ عند تحميل الصورة حاول فتح الرابط بمتصفح اخر مثل كروم</div>
-  <button id="download-btn">Download Image</button>
 
 
   <script>
     window.onload = function() {
-        const textForm = document.getElementById('text-form');
         const overlayText = document.getElementById('overlay-text');
         const downloadButton = document.getElementById('download-btn');
         const userInput = document.getElementById('text-input')
@@ -117,7 +110,6 @@
         userInput.addEventListener('input', function() {
             overlayText.innerHTML = userInput.value;
         });
-
 
         downloadButton.addEventListener('click', function() {
             const imageContainer = document.getElementById('image-container');
