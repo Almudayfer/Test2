@@ -112,15 +112,33 @@
         });
 
         downloadButton.addEventListener('click', function() {
-            const imageContainer = document.getElementById('image-container');
-            html2canvas(imageContainer).then(function(canvas) {
-            const image = canvas.toDataURL('image/png');
-            const link = document.createElement('a');
-            link.href = image;
-            link.download = 'text_overlay.png';
-            link.target = '_blank';
-            link.click();
-            });
+            // const imageContainer = document.getElementById('image-container');
+            // html2canvas(imageContainer).then(function(canvas) {
+            // const image = canvas.toDataURL('image/png');
+            // const link = document.createElement('a');
+            // link.href = image;
+            // link.download = 'text_overlay.png';
+            // link.target = '_blank';
+            // link.click();
+            // });
+            const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+
+        canvas.width = backgroundImage.width;
+        canvas.height = backgroundImage.height;
+
+        context.drawImage(backgroundImage, 0, 0);
+
+        const text = overlayText.innerText;
+        context.font = '40px Arial, Helvetica, sans-serif';
+        context.fillStyle = 'rgb(3, 55, 176)';
+        context.fillText(text, canvas.width / 2, canvas.height * 0.685, canvas.width);
+
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL('image/png');
+        link.download = 'text_overlay.png';
+        link.target = '_blank';
+        link.click();
         });
     };
   </script>
