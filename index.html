@@ -103,9 +103,13 @@
 
   <script>
     window.onload = function() {
+        // const overlayText = document.getElementById('overlay-text');
+        // const downloadButton = document.getElementById('download-btn');
+        // const userInput = document.getElementById('text-input')
         const overlayText = document.getElementById('overlay-text');
         const downloadButton = document.getElementById('download-btn');
-        const userInput = document.getElementById('text-input')
+        const userInput = document.getElementById('text-input');
+        const backgroundImage = document.getElementById('background-image');
 
         userInput.addEventListener('input', function() {
             overlayText.innerHTML = userInput.value;
@@ -122,24 +126,24 @@
             // link.click();
             // });
             const canvas = document.createElement('canvas');
-        const context = canvas.getContext('2d');
+            const context = canvas.getContext('2d');
 
-        canvas.width = backgroundImage.width;
-        canvas.height = backgroundImage.height;
+            canvas.width = backgroundImage.width;
+            canvas.height = backgroundImage.height;
 
-        context.drawImage(backgroundImage, 0, 0);
+            context.drawImage(backgroundImage, 0, 0);
 
-        const text = overlayText.innerText;
-        context.font = '40px Arial, Helvetica, sans-serif';
-        context.fillStyle = 'rgb(3, 55, 176)';
-        context.fillText(text, canvas.width / 2, canvas.height * 0.685, canvas.width);
+            const text = overlayText.innerText;
+            context.font = '40px Arial, Helvetica, sans-serif';
+            context.fillStyle = 'rgb(3, 55, 176)';
+            context.fillText(text, canvas.width / 2, canvas.height * 0.685, canvas.width);
 
-        const link = document.createElement('a');
-        link.href = canvas.toDataURL('image/png');
-        link.download = 'text_overlay.png';
-        link.target = '_blank';
-        link.click();
-        });
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL('image/png');
+            link.download = 'text_overlay.png';
+            link.target = '_blank';
+            link.click();
+          });
     };
   </script>
 </body>
